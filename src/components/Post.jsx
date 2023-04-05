@@ -1,0 +1,24 @@
+import styles from './Post.module.css'
+
+export function Post(props) {
+  return (
+    <article className={styles.post}>
+      <header>
+        <div className={styles.author}>
+          <img className={styles.avatar} src="https://avatars.githubusercontent.com/u/75543735?v=4" />
+          <time title='11 de Maio de 2022 às 08:13h' dateTime='2022-05-11 08:13:30'>Publicado há 1h</time>
+
+          <div className={styles.authorInfo}>
+            <strong>João Paulo</strong>
+            <span>Web Developer</span>
+          </div>
+        </div>
+      </header>
+      <div className={styles.content}>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi ea, dignissimos ratione sed ab culpa, quidem consequuntur quo, a sint accusamus modi suscipit excepturi fugit nobis tempore beatae eveniet. Sint!</p>
+        <p><a href="#">Sei lá</a></p>
+        <p><a href="#">Link pra algum lugar</a></p>
+      </div>
+    </article>
+  )
+}
