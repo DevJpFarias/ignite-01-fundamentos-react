@@ -15,6 +15,7 @@ export function Post(props) {
 
         <time title='11 de Maio de 2022 às 08:13h' dateTime='2022-05-11 08:13:30'>Publicado há 1h</time>
       </header>
+
       <div className={styles.content}>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi ea, dignissimos ratione sed ab culpa, quidem consequuntur quo, a sint accusamus modi suscipit excepturi fugit nobis tempore beatae eveniet. Sint!</p>
         <p>
@@ -22,6 +23,14 @@ export function Post(props) {
           <a href="#">#Hashtag</a>
         </p>
       </div>
+
+      <form className={styles.commentForm}>
+        <strong>Deixe um feedback</strong>
+        <textarea placeholder='Deixe um comentário' />
+        <footer>
+          <button type="submit">Publicar</button>
+        </footer>
+      </form>
     </article>
   )
 }
