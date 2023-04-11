@@ -5,6 +5,37 @@ import { Sidebar } from "./components/Sidebar";
 import './global.css'
 import styles from './App.module.css'
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/diego3g.png',
+      name: 'Diego Fernandes',
+      role: 'CTO @Rocketseat'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala galeraa'},
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu potifa.'},
+      { type: 'link', content: 'jane.design/doctorcare'},
+    ],
+    publishedAt: new Date('2023-04-03 20:00:00')
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/maykbrito.png',
+      name: 'Mayk Brito',
+      role: 'Educator @Rocketseat'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala galeraa'},
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu potifa.'},
+      { type: 'link', content: 'jane.design/doctorcare'},
+    ],
+    publishedAt: new Date('2023-04-10 20:00:00')
+  }
+]
+
 export function App() {
   return (
     <div>
@@ -12,8 +43,15 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post author="João Paulo" content="Alguma coisa"/>
-          <Post author="Ana Paula" content="Outra coisa"/>
+          {
+            posts.map(post => {
+              return <Post
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            })
+          }
         </main>
       </div>
     </div>
