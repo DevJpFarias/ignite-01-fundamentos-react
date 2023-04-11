@@ -1,29 +1,46 @@
 import { Comment } from './Comment'
 import { Avatar } from './Avatar'
+
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import styles from './Post.module.css'
 
-export function Post(props) {
+export function Post({ author, content, publishedAt }) {
+  const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
+    locale: ptBR,
+  })
+
+  const publishedDistanceRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true
+  })
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://avatars.githubusercontent.com/u/75543735?v=4" />
+          <Avatar src={author.avatarUrl} />
 
           <div className={styles.authorInfo}>
-            <strong>João Paulo</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title='11 de Maio de 2022 às 08:13h' dateTime='2022-05-11 08:13:30'>Publicado há 1h</time>
+        <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>{publishedDistanceRelativeToNow}</time>
       </header>
 
       <div className={styles.content}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi ea, dignissimos ratione sed ab culpa, quidem consequuntur quo, a sint accusamus modi suscipit excepturi fugit nobis tempore beatae eveniet. Sint!</p>
-        <p>
-          <a href="#">#Sei lá</a>{' '}
-          <a href="#">#Hashtag</a>
-        </p>
+        {
+          content.map(line => {
+            if(line.type === 'paragraph') {
+              return <p>{line.content}</p>
+            } else if (line.type === 'link') {
+              return <p><a href='#'>{line.content}</a></p>
+            }
+          })
+        }
       </div>
 
       <form className={styles.commentForm}>
